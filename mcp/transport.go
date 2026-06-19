@@ -267,6 +267,8 @@ func call(ctx context.Context, conn *jsonrpc2.Connection, method string, params 
 
 // A LoggingTransport is a [Transport] that delegates to another transport,
 // writing RPC logs to an io.Writer.
+//
+// Deprecated: SEP-2577 deprecates this API. It remains functional for at least 12 months, but may be removed in a future release of this SDK.
 type LoggingTransport struct {
 	Transport Transport
 	Writer    io.Writer

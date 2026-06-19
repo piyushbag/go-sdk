@@ -69,6 +69,8 @@ func compareLevels(l1, l2 LoggingLevel) int {
 }
 
 // LoggingHandlerOptions are options for a LoggingHandler.
+//
+// Deprecated: SEP-2577 deprecates this API. It remains functional for at least 12 months, but may be removed in a future release of this SDK.
 type LoggingHandlerOptions struct {
 	// The value for the "logger" field of logging notifications.
 	LoggerName string
@@ -79,6 +81,8 @@ type LoggingHandlerOptions struct {
 }
 
 // A LoggingHandler is a [slog.Handler] for MCP.
+//
+// Deprecated: SEP-2577 deprecates this API. It remains functional for at least 12 months, but may be removed in a future release of this SDK.
 type LoggingHandler struct {
 	opts LoggingHandlerOptions
 	ss   *ServerSession
@@ -101,6 +105,8 @@ func ensureLogger(l *slog.Logger) *slog.Logger {
 
 // NewLoggingHandler creates a [LoggingHandler] that logs to the given [ServerSession] using a
 // [slog.JSONHandler].
+//
+// Deprecated: SEP-2577 deprecates this API. It remains functional for at least 12 months, but may be removed in a future release of this SDK.
 func NewLoggingHandler(ss *ServerSession, opts *LoggingHandlerOptions) *LoggingHandler {
 	var buf bytes.Buffer
 	jsonHandler := slog.NewJSONHandler(&buf, &slog.HandlerOptions{
@@ -194,5 +200,5 @@ func (h *LoggingHandler) handle(ctx context.Context, r slog.Record) error {
 	// documentation says not to.
 	// In this case logging is a service to clients, not a means for debugging the
 	// server, so we want to cancel the log message.
-	return h.ss.Log(ctx, params)
+	return h.ss.log(ctx, params)
 }
