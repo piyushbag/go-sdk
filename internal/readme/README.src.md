@@ -44,8 +44,8 @@ The following table shows which versions of the Go SDK support which versions of
 \*\* Partial support for 2025-11-25 (client side OAuth and Sampling with tools not available).
 
 The roots, sampling, and logging features are deprecated by
-[SEP-2577](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2577).
-The SDK continues to support them for compatibility.
+[SEP-2577](https://modelcontextprotocol.io/seps/2577-deprecate-roots-sampling-and-logging).
+They remain fully functional for at least 12 months.
 
 New releases of the SDK target only supported versions of Go. See
 https://go.dev/doc/devel/release#policy for more information.

@@ -236,8 +236,8 @@ requests.
 
 ### Logging
 
-> **Note:** The logging feature is deprecated by [SEP-2577](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2577).
-> The SDK continues to support logging for compatibility.
+> **Note:** The logging feature is deprecated by [SEP-2577](https://modelcontextprotocol.io/seps/2577-deprecate-roots-sampling-and-logging).
+> It remains fully functional for at least 12 months. Prefer stderr logging (stdio transports) or OpenTelemetry for structured observability.
 
 MCP servers can send logging messages to MCP clients.
 (This form of logging is distinct from server-side logging, where the

@@ -83,7 +83,7 @@ type ClientOptions struct {
 	// non nil value for [ClientCapabilities.Sampling], that value overrides the
 	// inferred capability.
 	//
-	// Deprecated: SEP-2577 deprecates this API. It may be removed in a future release of this SDK.
+	// Deprecated: as of protocol version 2026-07-28 (SEP-2577). Remains fully functional for at least 12 months.
 	CreateMessageHandler func(context.Context, *CreateMessageRequest) (*CreateMessageResult, error)
 	// CreateMessageWithToolsHandler handles incoming sampling/createMessage
 	// requests that may involve tool use. It returns
@@ -98,7 +98,7 @@ type ClientOptions struct {
 	// It is a panic to set both CreateMessageHandler and
 	// CreateMessageWithToolsHandler.
 	//
-	// Deprecated: SEP-2577 deprecates this API. It may be removed in a future release of this SDK.
+	// Deprecated: as of protocol version 2026-07-28 (SEP-2577). Remains fully functional for at least 12 months.
 	CreateMessageWithToolsHandler func(context.Context, *CreateMessageWithToolsRequest) (*CreateMessageWithToolsResult, error)
 	// ElicitationHandler handles incoming requests for elicitation/create.
 	//
@@ -160,7 +160,7 @@ type ClientOptions struct {
 	PromptListChangedHandler   func(context.Context, *PromptListChangedRequest)
 	ResourceListChangedHandler func(context.Context, *ResourceListChangedRequest)
 	ResourceUpdatedHandler     func(context.Context, *ResourceUpdatedNotificationRequest)
-	// Deprecated: SEP-2577 deprecates this API. It may be removed in a future release of this SDK.
+	// Deprecated: as of protocol version 2026-07-28 (SEP-2577). Remains fully functional for at least 12 months.
 	LoggingMessageHandler       func(context.Context, *LoggingMessageRequest)
 	ProgressNotificationHandler func(context.Context, *ProgressNotificationClientRequest)
 	// MultiRoundTrip configures the automatic MultiRoundTrip (Multi Round-Trip Requests) middleware.
@@ -583,7 +583,7 @@ func (cs *ClientSession) startKeepalive(interval time.Duration) {
 // replacing any with the same URIs,
 // and notifies any connected servers.
 //
-// Deprecated: SEP-2577 deprecates this API. It may be removed in a future release of this SDK.
+// Deprecated: as of protocol version 2026-07-28 (SEP-2577). Remains fully functional for at least 12 months.
 func (c *Client) AddRoots(roots ...*Root) {
 	// Only notify if something could change.
 	if len(roots) == 0 {
@@ -597,7 +597,7 @@ func (c *Client) AddRoots(roots ...*Root) {
 // and notifies any connected servers if the list has changed.
 // It is not an error to remove a nonexistent root.
 //
-// Deprecated: SEP-2577 deprecates this API. It may be removed in a future release of this SDK.
+// Deprecated: as of protocol version 2026-07-28 (SEP-2577). Remains fully functional for at least 12 months.
 func (c *Client) RemoveRoots(uris ...string) {
 	changeAndNotify(c, notificationRootsListChanged, &RootsListChangedParams{},
 		func() bool { return c.roots.remove(uris...) })
@@ -1214,7 +1214,7 @@ func (cs *ClientSession) CallTool(ctx context.Context, params *CallToolParams) (
 
 // SetLoggingLevel sets the minimum log level for the server session.
 //
-// Deprecated: SEP-2577 deprecates this API. It may be removed in a future release of this SDK.
+// Deprecated: as of protocol version 2026-07-28 (SEP-2577). Remains fully functional for at least 12 months.
 func (cs *ClientSession) SetLoggingLevel(ctx context.Context, params *SetLoggingLevelParams) error {
 	_, err := handleSend[*emptyResult](ctx, methodSetLevel, newClientRequest(cs, orZero[Params](params)))
 	return err
