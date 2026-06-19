@@ -1,0 +1,4 @@
+{
+  "name": "go-sdk Cloud Agent",
+  "install": "bash .cursor/scripts/cloud-agent-install.sh"
+}

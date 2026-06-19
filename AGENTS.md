@@ -56,3 +56,18 @@ The project uses the standard Go toolchain.
     -   Edit `internal/docs/*.src.md`.
     -   Run `go generate ./internal/docs` to regenerate.
     -   Commit files from both directories.
+
+## Cursor Cloud specific instructions
+
+Cloud agents on this fork must commit under the repo owner's identity, not Cursor Agent.
+
+- On startup, `.cursor/environment.json` runs `.cursor/scripts/cloud-agent-install.sh` to configure git and optional `gh` auth.
+- **Always commit with** `.cursor/scripts/git-commit.sh` (never plain `git commit`):
+
+  ```bash
+  git add <files>
+  .cursor/scripts/git-commit.sh -m "your message"
+  ```
+
+- For GitHub PR/issue commands (`gh pr comment`, `gh pr create`, …), ensure `CURSOR_GH_PAT` is set in the [Cloud Agents dashboard secrets](https://cursor.com/dashboard/cloud-agents). See `.cursor/README.md`.
+- Do not add `Co-authored-by:` trailers or Cursor Agent signatures to commits.
