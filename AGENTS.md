@@ -56,3 +56,10 @@ The project uses the standard Go toolchain.
     -   Edit `internal/docs/*.src.md`.
     -   Run `go generate ./internal/docs` to regenerate.
     -   Commit files from both directories.
+
+## Cursor Cloud specific instructions
+
+- This is a pure Go module (no application binary to "deploy"); the products are library packages plus runnable example/conformance commands under `examples/` and `conformance/`. Dependencies come from the Go module cache; the startup update script runs `go mod download`.
+- CI lint (`.github/workflows/test.yml`) is `gofmt -l .`, `go vet ./...`, and `staticcheck` (`honnef.co/go/tools/cmd/staticcheck@v0.6.1`). `staticcheck` is not vendored; install it on demand with `go install honnef.co/go/tools/cmd/staticcheck@v0.6.1` and run `$(go env GOPATH)/bin/staticcheck ./...`.
+- Quick end-to-end sanity check of MCP over HTTP: run `go run ./examples/http server` in one terminal, then `go run ./examples/http client` in another. The client lists tools and calls `cityTime`. Note: a plain GET to the server root returns HTTP 400 by design (it is an MCP streamable endpoint, not a browser page), so don't treat that as a failure.
+- The conformance scripts (`./scripts/server-conformance.sh`, `./scripts/client-conformance.sh`) shell out to `npx @modelcontextprotocol/conformance@latest`, so they require Node/npx and network access to npm.
